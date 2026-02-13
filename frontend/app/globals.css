@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@layer base {
+  * {
+    border-color: black;
+  }
+
+  body {
+    background-color: white;
+    color: black;
+    @apply font-mono;
+  }
+}
+
+/* Brutalist Kinetic Typography Animations */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+
+  25% {
+    transform: translate(-1px, 1px);
+  }
+
+  50% {
+    transform: translate(1px, -1px);
+  }
+
+  75% {
+    transform: translate(-1px, -1px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.kinetic-title {
+  display: inline-block;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.kinetic-title:hover {
+  animation: glitch 0.2s infinite;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+.slide-in {
+  animation: slide-in 0.4s ease-out;
+}
+
+.brutalist-border {
+  border: 4px solid black;
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.2s ease;
+}
+
+.brutalist-border:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.brutalist-border-sm {
+  border: 3px solid black;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.1s ease;
+}
+
+.brutalist-border-sm:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.brutalist-button {
+  @apply border-4 border-black bg-white text-black font-bold uppercase tracking-wider px-6 py-3 transition-all duration-150 relative;
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.brutalist-button:hover {
+  @apply bg-black text-white;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.brutalist-button:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.brutalist-card-hover {
+  @apply transition-all duration-200;
+}
+
+.brutalist-card-hover:hover {
+  @apply bg-black text-white;
+}
+
+.brutalist-card-hover:hover * {
+  border-color: white !important;
+}
+
+.brutalist-card-hover:hover .brutalist-button {
+  @apply bg-white text-black border-white;
+  box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 1);
+}
+
+/* Stagger animation for product grid */
+.stagger-item {
+  opacity: 0;
+  animation: slide-in 0.5s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.stagger-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.stagger-item:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.stagger-item:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.stagger-item:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+.stagger-item:nth-child(6) {
+  animation-delay: 0.3s;
+}
