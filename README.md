@@ -6,7 +6,7 @@ A modern e-commerce platform built with Next.js (Frontend) and Node.js/Express (
 
 - **Frontend**: Next.js 14+ (App Router), TypeScript, Tailwind CSS.
 - **Backend**: Node.js, Express.js.
-- **Database**: MongoDB (via Mongoose).
+- **Database**: Local JSON Storage (`test-product.json`).
 - **Communication**: REST API.
 
 ## Project Structure
@@ -23,7 +23,7 @@ A modern e-commerce platform built with Next.js (Frontend) and Node.js/Express (
 ### Prerequisites
 
 - Node.js (v18+)
-- MongoDB installed and running locally on default port (27017)
+- Docker (optional, for containerized run)
 
 ### Backend Setup
 
@@ -77,21 +77,14 @@ A modern e-commerce platform built with Next.js (Frontend) and Node.js/Express (
 2. Access the application:
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:4000
-   - MongoDB: localhost:27017
 
 3. Stop all services:
    ```bash
    docker-compose down
    ```
 
-4. Stop and remove volumes (clears database):
-   ```bash
-   docker-compose down -v
-   ```
-
 - **Frontend**: Next.js app on port 3000
-- **Backend**: Express API on port 4000
-- **MongoDB**: Database on port 27017
+- **Backend**: Express API (JSON storage) on port 4000
 
 The frontend communicates with the backend using the Docker service name `backend:4000`.
 
