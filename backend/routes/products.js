@@ -1,43 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/Product');
+const path = require('path');
+const fs = require('fs');
+
+// Path to products JSON
+const productsPath = path.join(__dirname, '../../test-product.json');
 
 // GET all products
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
     try {
-        const products = await Product.find();
+        const data = fs.readFileSync(productsPath, 'utf8');
+        const products = JSON.parse(data);
         res.json(products);
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        console.error('Error reading products file:', err);
+        res.status(500).json({ message: 'Error reading products data' });
     }
 });
 
-// POST a new product
-router.post('/', async (req, res) => {
-    const product = new Product({
-        name: req.body.name,
-        price: req.body.price,
-        description: req.body.description,
-        category: req.body.category,
-        image: req.body.image
-    });
-
-    try {
-        const newProduct = await product.save();
-        res.status(201).json(newProduct);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
-
-// DELETE all products (Catalog Refresh)
-router.delete('/', async (req, res) => {
-    try {
-        await Product.deleteMany({});
-        res.json({ message: 'All products deleted' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
+// POST and DELETE methods disabled in JSON-only mode
 
 module.exports = router;

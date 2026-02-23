@@ -1,0 +1,31 @@
+name: Deploy Backend to Ubuntu Server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Navigate to project directory
+            cd ${{ secrets.SERVER_PATH }}
+            
+            # Pull latest changes
+            git pull origin main
+            
+            # Restart all containers with latest changes
+            docker compose up -d --build
+            
+            # Optional: Clean up dangling images to save space
+            docker image prune -f

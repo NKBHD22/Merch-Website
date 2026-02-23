@@ -12,6 +12,7 @@ RUN npm ci --only=production
 
 # Copy application code
 COPY . .
+# Explicitly ensure test-product.json is available (it should be if copied to backend/)
 
 # Expose port
 EXPOSE 4000
