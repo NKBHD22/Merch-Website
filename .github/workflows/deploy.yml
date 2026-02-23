@@ -25,7 +25,7 @@ jobs:
             git pull origin main
             
             # Restart all containers with latest changes
-            docker compose up -d --build
+            sudo docker-compose up -d --build
             
             # Optional: Clean up dangling images to save space
-            docker image prune -f
+            sudo docker image prune -f
